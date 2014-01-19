@@ -7,7 +7,19 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
+
+import javax.swing.GroupLayout;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
+import javax.swing.KeyStroke;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileFilter;
 
 /**
@@ -16,6 +28,26 @@ import javax.swing.filechooser.FileFilter;
  */
 public class FileView extends javax.swing.JFrame {
 
+	// Meine Variablen-Deklaration:
+    private String pattern=null;
+    private int Suchposition=0;
+    // Ende der Deklaration
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JLabel lblMessage;
+    private JMenu jMenuFile;
+    private JMenu jMenuEdit;
+    private JMenuBar jMenuBar1;
+    private JMenuItem jMenuItemOpen;
+    private JMenuItem jMenuItemClose;
+    private JMenuItem jMenuItemSearch;
+    private JMenuItem jMenuItemContinueSearch;
+    private JScrollPane jspText;
+    private JScrollPane jspOktal;
+    private JTabbedPane jTabbedPane1;
+    private JTextArea jtaText;
+    private JTextArea jtaOktal;
+    // End of variables declaration//GEN-END:variables
+	
     /** Creates new form FileView */
     public FileView() {
         initComponents();
@@ -26,8 +58,8 @@ public class FileView extends javax.swing.JFrame {
         this();
         loadFile(fileName);                 // Datei als Text laden
         loadFileOkt(fileName);              // Datei Byteweise als Okt. laden
-        jTextArea1.setCaretPosition(0);     // TextArea ausrichten
-        jTextArea2.setCaretPosition(0);
+        jtaText.setCaretPosition(0);     // TextArea ausrichten
+        jtaOktal.setCaretPosition(0);
     }
     
      public FileView(File f) {
@@ -44,138 +76,140 @@ public class FileView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblMessage = new JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jspText = new JScrollPane();
+        jtaText = new JTextArea();
+        jspOktal = new JScrollPane();
+        jtaOktal = new JTextArea();
+        jMenuBar1 = new JMenuBar();
+        jMenuFile = new JMenu();
+        jMenuItemOpen = new JMenuItem();
+        jMenuItemClose = new JMenuItem();
+        jMenuEdit = new JMenu();
+        jMenuItemSearch = new JMenuItem();
+        jMenuItemContinueSearch = new JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("Blaa dashd ashdasdhkjafhd");
+        lblMessage.setHorizontalAlignment(SwingConstants.LEFT);
+        lblMessage.setText(" ");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setEditable(false);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jtaText.setColumns(20);
+        jtaText.setEditable(false);
+        jtaText.setRows(5);
+        jspText.setViewportView(jtaText);
 
-        jTabbedPane1.addTab("Text", jScrollPane1);
+        jTabbedPane1.addTab("Text", jspText);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setEditable(false);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        jtaOktal.setColumns(20);
+        jtaOktal.setEditable(false);
+        jtaOktal.setRows(5);
+        jspOktal.setViewportView(jtaOktal);
 
-        jTabbedPane1.addTab("Oktal", jScrollPane2);
+        jTabbedPane1.addTab("Oktal", jspOktal);
 
-        jMenu1.setText("Datei");
+        jMenuFile.setText("Datei");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Öffnen");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemOpen.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemOpen.setText("�ffnen");
+        jMenuItemOpen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenuFile.add(jMenuItemOpen);
 
-        jMenuItem2.setText("Schließen");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemClose.setText("Schlie�en");
+        jMenuItemClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenuFile.add(jMenuItemClose);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuFile);
 
-        jMenu2.setText("Bearbeiten");
+        jMenuEdit.setText("Bearbeiten");
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Suchen");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemSearch.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemSearch.setText("Suchen");
+        jMenuItemSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenuEdit.add(jMenuItemSearch);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
-        jMenuItem4.setText("Weitersuchen");
-        jMenuItem4.setEnabled(false);
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemContinueSearch.setAccelerator(KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
+        jMenuItemContinueSearch.setText("Weitersuchen");
+        jMenuItemContinueSearch.setEnabled(false);
+        jMenuItemContinueSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        jMenuEdit.add(jMenuItemContinueSearch);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuEdit);
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(jTabbedPane1, GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)))
+                        .addComponent(lblMessage, GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(jTabbedPane1, GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblMessage)
                 .addContainerGap())
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>//GEN-END:initComponents    
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private FileFilter filefilter = new FileFilter() {
+        @Override
+        public boolean accept(File f) {
+            return (f.getAbsolutePath().endsWith("txt") || f.isDirectory());  //Nur Dateien des Typs .txt zulassen.
+        }
+
+        @Override
+        public String getDescription() {
+            return "Textdateien";
+        }
+    };    
+    
+    private void jMenuItem1ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         //Button:  Öffnen
 
-        JFileChooser fc = new JFileChooser();
+        JFileChooser filechooser = new JFileChooser();       
 
-        FileFilter ff = new FileFilter() {
+        filechooser.setFileFilter(filefilter);
 
-            @Override
-            public boolean accept(File f) {
-                return (f.getAbsolutePath().endsWith("txt") || f.isDirectory());  //Nur Dateien des Typs .txt zulassen.
-            }
-
-            @Override
-            public String getDescription() {
-                return "Textdateien";
-            }
-        };
-
-        fc.setFileFilter(ff);
-
-        fc.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                fileSelected(e);
-            }
-        });
-        fc.showOpenDialog(this);
+        filechooser.addActionListener(actionFileChooser);
+        filechooser.showOpenDialog(this);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+    
+    private ActionListener actionFileChooser = new ActionListener() {
+		public void actionPerformed (ActionEvent e) {
+			fileSelected(e);
+		}
+	};
+    
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMenuItem3ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // Button : Suchen
 
         // Popup zum Abfragen des Suchpatterns initialisieren und ausführen
@@ -183,37 +217,32 @@ public class FileView extends javax.swing.JFrame {
         Searchpop.setVisible(true);
         pattern = Searchpop.getPattern();                   // pattern von Searchpopup abfragen
  
-        int loc = Suche();                                  //Suche ausführen
+        int loc = search();                                  //Suche ausführen
         Suchposition=0;
-        if (loc!=-1)
-        {
-          jTextArea1.setCaretPosition(loc);                 //Position des TextFeldes auf das gesuchte Pattern ausrichten
-          jTextArea1.select(loc,(loc+pattern.length()));    //Gefundenes Pattern in TextArea Markieren
-          Suchposition=loc+pattern.length();              //Zuletzt gefundener Ort merken, um bei einer weiteren Suche fortzufahren
-          jTextArea1.requestFocus();
-          jMenuItem4.setEnabled(true);                      //Weitersuche im Menü aktivieren
+        if (loc!=-1) {        
+        	jtaText.setCaretPosition(loc);                 //Position des TextFeldes auf das gesuchte Pattern ausrichten
+        	jtaText.select(loc,(loc+pattern.length()));    //Gefundenes Pattern in TextArea Markieren
+        	Suchposition=loc+pattern.length();                //Zuletzt gefundener Ort merken, um bei einer weiteren Suche fortzufahren
+        	jtaText.requestFocus();
+        	jMenuItemContinueSearch.setEnabled(true);                      //Weitersuche im Menü aktivieren
         }
-}//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMenuItem4ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         //Button : Weitersuchen
 
-        int loc = WeitereSuche(Suchposition);               // Von vorher gespeicherter Suhposition an weitersuchen
-        if (loc!=-1)
-        {
-          jTextArea1.setCaretPosition(loc);                //Position des TextFeldes auf das gesuchte Pattern ausrichten
-          jTextArea1.select(loc,loc+pattern.length());     //Gefundenes Pattern in TextArea Markieren
-          Suchposition=loc + pattern.length();             //Zuletzt gefundener Ort merken, um bei einer weiteren Suche fortzufahren
-          jTextArea1.requestFocus();
-        }
-        else
-        {
-            Suchposition=0;                                 //Suchposition wieder an den Anfang der Datei setzen
+        int loc = continueSearch(Suchposition);               // Von vorher gespeicherter Suhposition an weitersuchen
+        if (loc!=-1) {        
+        	jtaText.setCaretPosition(loc);                //Position des TextFeldes auf das gesuchte Pattern ausrichten
+          	jtaText.select(loc,loc+pattern.length());     //Gefundenes Pattern in TextArea Markieren
+          	Suchposition=loc + pattern.length();             //Zuletzt gefundener Ort merken, um bei einer weiteren Suche fortzufahren
+          jtaText.requestFocus();
+        } else {        
+        	Suchposition=0;                                 //Suchposition wieder an den Anfang der Datei setzen
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+    private void jMenuItem2ActionPerformed(ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -221,108 +250,84 @@ public class FileView extends javax.swing.JFrame {
         JFileChooser fc = (JFileChooser)e.getSource();
         File f = fc.getSelectedFile();
         if (f != null) {
-
             //Variablen neu initialisieren  Falls eine 2. Datei geöffnet wird.
-                    jTextArea1.setText("");
-                    jTextArea2.setText("");
-                    pattern="";
-                    Suchposition=0;
+            jtaText.setText("");
+            jtaOktal.setText("");
+            pattern="";
+            Suchposition=0;
             //-----------------
             loadFile(f);                            //Datei als Text laden
             loadFileOkt(f);                         //Datei Bitweise als Okt. laden
-            jTextArea1.setCaretPosition(0);         // TextArea ausrichten
-            jTextArea2.setCaretPosition(0);
+            jtaText.setCaretPosition(0);         // TextArea ausrichten
+            jtaOktal.setCaretPosition(0);
         }
     }
-
-    private int Suche()   //Sucht pattern in jTextArea1, wenn gefunden gibt es die Position aus, wenn nicht null
-    {
-         
-        if (jTextArea1.getText().matches("(?s).*" + pattern + ".*"))   //mit matches überprüfen ob das gesuchte Pattern im Text vorkommt
-         {
-            int a= jTextArea1.getText().indexOf(pattern);              //Anfangskoordinate des Patterns suchen
+    
+    private int search() {  //Sucht pattern in jTextArea1, wenn gefunden gibt es die Position aus, wenn nicht null        
+    	String text = jtaText.getText();
+    	if (text.matches("(?s).*" + pattern + ".*")) { //mit matches überprüfen ob das gesuchte Pattern im Text vorkommt                
+        	int a = text.indexOf(pattern);              //Anfangskoordinate des Patterns suchen
             return a;
          }  
          return -1;
        
     }
 
-    private int WeitereSuche(int Anfang) //Sucht pattern in jTextArea1 von Position "Anfang" aus, wenn gefunden gibt es die Position aus, wenn nicht null
-    {
-
-        int a= jTextArea1.getText().indexOf(pattern,Anfang);         //Anfangskoordinaten des Patterns von Position "Anfang" aus
+    private int continueSearch(int beginning) { //Sucht pattern in jTextArea1 von Position "Anfang" aus, wenn gefunden gibt es die Position aus, wenn nicht null
+        String text = jtaText.getText();
+    	int a = text.indexOf(pattern,beginning);         //Anfangskoordinaten des Patterns von Position "Anfang" aus
         return a;
     }
 
 
-    private void loadFileOkt(File f) {
-       loadFileOkt(f.getAbsolutePath());
+    private void loadFileOkt(File file) {
+    	loadFileOkt(file.getAbsolutePath());
     }
 
     private void loadFileOkt(String fileName) {
         try {
-            BufferedInputStream in = new BufferedInputStream(new FileInputStream(fileName));
+        	FileInputStream fisInput = new FileInputStream(fileName);
+            BufferedInputStream bisInput = new BufferedInputStream(fisInput);
             byte[] b = new byte[18];
             String line="";
-            while ( in.read(b) != -1)
-            {
-                for (int i = 0; i < 18; i++)
-                {
+            while ( bisInput.read(b) != -1) {
+                for (int i = 0; i < 18; i++) {
                   line = line.concat(String.format("%03o ", b[i]));         //18 Bytes einlesen und  in Line schreiben
                 }               
                 line = line.concat("\n");                                   //Zeilenumbruch hinzufügen
-                jTextArea2.append(line);                                    //Zeile an jTextAreaübergeben
+                jtaOktal.append(line);                                    //Zeile an jTextAreaübergeben
                 line="";                                                    //Zeile für nächste Zeile wieder clearen
             }
-            in.close();
+            bisInput.close();
         }
-        catch(Exception e) {}
+        catch(Exception e) {
+        	
+        }
     }
 
-    private void loadFile(File f) {
-        loadFile(f.getAbsolutePath());
+    private void loadFile(File file) {
+        loadFile(file.getAbsolutePath());
     }
+    
     private void loadFile(String fileName) {
-            int zeichenanzahl = 0;
-            int zeilenanzahl = 0;
-            int woerteranzahl = 0;
-
-
-            try {
-                BufferedReader in = new BufferedReader(new FileReader(fileName));
-                String line = null;
-                while ((line = in.readLine()) != null)                                  //Zeile einlesen
-                {
-                    zeichenanzahl += line.length();                                     //Enthaltene Zeilenanzahl zur Gesamtzahl addieren
-                    woerteranzahl += line.split(" ").length;                            //Enthaltene Wörter zur Gesamtanzahl hinzufügen
-                    jTextArea1.append(String.format("%5d#  ", ++zeilenanzahl) +  line + "\n");//Zeilennr. und Zeile an textarea hinzufügen, Zeilenanzahl um 1 erhöhen
-                }
-                in.close();
+        int zeichenanzahl = 0;
+        int zeilenanzahl = 0;
+        int woerteranzahl = 0;
+        
+        try {
+        	FileReader frInput = new FileReader(fileName);
+            BufferedReader brInput = new BufferedReader(frInput);
+            String line = null;
+            while ((line = brInput.readLine()) != null) {                                //Zeile einlesen            
+                zeichenanzahl += line.length();                                     //Enthaltene Zeilenanzahl zur Gesamtzahl addieren
+                woerteranzahl += line.split(" ").length;                            //Enthaltene Wörter zur Gesamtanzahl hinzufügen
+                jtaText.append(String.format("%5d#  ", ++zeilenanzahl) +  line + "\n");//Zeilennr. und Zeile an textarea hinzufügen, Zeilenanzahl um 1 erhöhen
             }
-            catch(Exception e) {}
-            
-            jLabel1.setText(String.format("Wörter:  %d,  Zeichen:  %d,  Zeilen:   %d", woerteranzahl, zeichenanzahl, zeilenanzahl));
+            brInput.close();
+        }
+        catch(Exception e) {
+        	
+        }        
+        lblMessage.setText(String.format("Wörter:  %d,  Zeichen:  %d,  Zeilen:   %d", woerteranzahl, zeichenanzahl, zeilenanzahl));
     }
-
-    // Meine Variablen-Deklaration:
-    private String pattern=null;
-    private int Suchposition=0;
-    // Ende der Deklaration
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    // End of variables declaration//GEN-END:variables
-
 }
-

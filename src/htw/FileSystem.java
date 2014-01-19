@@ -154,17 +154,18 @@ public class FileSystem {
     }
 
     private boolean deleteSubs(File f) {
-        File[] files = f.listFiles();
-	if (files != null) {
-            for (int i = 0; i < files.length; i++) {
-		if (files[i].isDirectory())
-                    deleteSubs(files[i]); // Verzeichnis leeren und anschließend löschen
-		else
-                    files[i].delete(); // Datei löschen
-            }
-            return f.delete();
-	}
-        return false;
+    	File[] files = f.listFiles();
+    	if (files != null) {
+    		for (int i = 0; i < files.length; i++) {
+    			if (files[i].isDirectory()) {
+    				deleteSubs(files[i]); // Verzeichnis leeren und anschließend löschen
+    			} else {
+    				files[i].delete(); // Datei löschen
+    			}                
+    		}
+    		return f.delete();
+    	}
+    	return false;
     }
 
     public void open(String directory) throws IOException {
@@ -174,18 +175,17 @@ public class FileSystem {
             currentList = File.listRoots();
             currentDirectory = null;
             return;
+        } else {
+        	currentDirectory = new File(directory);
         }
-        else
-            currentDirectory = new File(directory);
-
+        
         if (currentDirectory.isFile()) {
             try { Desktop.getDesktop().open(currentDirectory); }
             catch (IOException e) { throw e; }
             currentDirectory = tmp;
-        }
-        else if (currentDirectory.isDirectory())
-            currentList = currentDirectory.listFiles();
-        else {
+        } else if (currentDirectory.isDirectory()) {
+        	currentList = currentDirectory.listFiles();
+        } else {
             currentDirectory = tmp;
             throw new IOException("Can't open device!");
         }
